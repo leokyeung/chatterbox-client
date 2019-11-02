@@ -5,7 +5,9 @@ var RoomsView = {
 
   initialize: function() {
     $('.addRoom').on('click', Rooms.add);
-    // RoomsView.$select.on('change', )
+    RoomsView.$select.on('change', function() {
+      App.roomname = RoomsView.$select.val();
+    });
   },
 
   renderRoom: function(roomName) {

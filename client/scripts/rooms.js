@@ -5,9 +5,10 @@ var Rooms = {
 
   add: function () {
     let newRoom = $('#roomname').val();
-    console.log(newRoom);
+    // console.log(newRoom);
     Rooms[newRoom] = newRoom;
     RoomsView.renderRoom(newRoom);
+    App.roomname = newRoom;
   }
 
 };

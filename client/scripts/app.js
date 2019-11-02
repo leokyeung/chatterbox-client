@@ -4,6 +4,8 @@ var App = {
 
   username: 'anonymous',
 
+  roomname: undefined,
+
   initialize: function() {
     App.username = window.location.search.substr(10);
 
@@ -14,15 +16,17 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    setInterval(()=>{
+      App.fetch();
+    }, 1000);
 
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
+      $('#chats').empty();
       // examine the response from the server request:
-      // console.log(data);
       for (let i = data.results.length - 1; i >= 0; i--) {
-        // console.log(data.results[i]);
         if (Rooms[data.results[i].roomname] === undefined && data.results[i].roomname !== undefined) {
           RoomsView.renderRoom(data.results[i].roomname);
           Rooms[data.results[i].roomname] = data.results[i].roomname;
@@ -32,9 +36,14 @@ var App = {
           text: data.results[i].text,
           roomname: data.results[i].roomname
         };
-        // console.log(messageData);
         if (messageData.text && messageData.username) {
-          $('#chats').prepend(MessagesView.renderMessage(messageData));
+          if (App.roomname) {
+            if (messageData.roomname === App.roomname) {
+              $('#chats').prepend(MessagesView.renderMessage(messageData));
+            }
+          } else {
+            $('#chats').prepend(MessagesView.renderMessage(messageData));
+          }
         }
       }
       callback();
