@@ -20,9 +20,13 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data);
+      // console.log(data);
       for (let i = data.results.length - 1; i >= 0; i--) {
         // console.log(data.results[i]);
+        if (Rooms[data.results[i].roomname] === undefined && data.results[i].roomname !== undefined) {
+          RoomsView.renderRoom(data.results[i].roomname);
+          Rooms[data.results[i].roomname] = data.results[i].roomname;
+        }
         let messageData = {
           username: data.results[i].username,
           text: data.results[i].text,

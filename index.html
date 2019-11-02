@@ -30,12 +30,15 @@
         <select>
 
         </select>
-
-        <button>Add Room</button>
+        <form action="#" id="create" method="post">
+          <input type="text" name="roomname" id="roomname" placeholder="add room name"/>
+          <!-- <input type="submit" name="submit" class="submit" value="Add Room"/> -->
+        </form>
+        <button class="addRoom">Add Room</button>
       </div>
       <form action="#" id="send" method="post">
-        <input type="text" name="message" id="message"/>
-        <input type="submit" name="submit" class="submit"/>
+        <input type="text" name="message" id="message" placeholder="enter message"/>
+        <input type="submit" name="submit" class="submit" value="Send Message"/>
       </form>
     </div>
     <div id="chats"></div>
