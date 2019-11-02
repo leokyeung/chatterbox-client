@@ -21,7 +21,18 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
-
+      for (let i = data.results.length - 1; i >= 0; i--) {
+        // console.log(data.results[i]);
+        let messageData = {
+          username: data.results[i].username,
+          text: data.results[i].text,
+          roomname: data.results[i].roomname
+        };
+        // console.log(messageData);
+        if (messageData.text && messageData.username) {
+          $('#chats').prepend(MessagesView.renderMessage(messageData));
+        }
+      }
       callback();
     });
   },
