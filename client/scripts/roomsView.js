@@ -4,7 +4,7 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    $('.addRoom').on('click', Rooms.add);
+    $('button').on('click', Rooms.add);
     RoomsView.$select.on('change', function() {
       App.roomname = RoomsView.$select.val();
     });

@@ -12,7 +12,7 @@ var FormView = {
     let newMessage = {
       username: App.username,
       text: $('#message').val(),
-      room: App.roomname
+      roomname: App.roomname
     };
     Parse.create(newMessage);
     $('#message').val('');

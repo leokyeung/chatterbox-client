@@ -88,3 +88,24 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+.addRoom {
+    border: none;
+    color: white;
+    text-align: center;
+    background-color: #0090da;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+
+}
+
+#create {
+    width: 50%;
+margin:0;
+}
+.flexbox-cheating{
+    display:flex;
+    align-items: center;
+}
+
+

@@ -34,17 +34,28 @@ var App = {
         let messageData = {
           username: data.results[i].username,
           text: data.results[i].text,
-          roomname: data.results[i].roomname
+          roomname: data.results[i].roomname,
+          friend: ''
         };
+        if (Friends[messageData.username]) {
+          messageData.friend = 'friend';
+        }
         if (messageData.text && messageData.username) {
           if (App.roomname) {
             if (messageData.roomname === App.roomname) {
-              $('#chats').prepend(MessagesView.renderMessage(messageData));
+              let friendNode = MessagesView.renderMessage(messageData);
+              $('#chats').prepend(friendNode);
             }
           } else {
-            $('#chats').prepend(MessagesView.renderMessage(messageData));
+            let friendNode = MessagesView.renderMessage(messageData);
+            $('#chats').prepend(friendNode);
           }
         }
+
+
+
+
+
       }
       callback();
     });
